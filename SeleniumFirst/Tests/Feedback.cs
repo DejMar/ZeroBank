@@ -32,7 +32,7 @@ namespace SeleniumFirst.Tests
             page.feedbackButton.Click();
             page.FillUserForm("Dejan", "mail@test.com", "Testiranje", "Komentar testa");
 
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
 
             page.btnSend.Click();
 
