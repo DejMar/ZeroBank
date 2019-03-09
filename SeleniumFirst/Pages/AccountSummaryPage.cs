@@ -51,9 +51,13 @@ namespace SeleniumFirst.Pages
         [FindsBy(How = How.ClassName, Using = "board-header")]
         public IWebElement msgExpected { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='transfer_funds_content']/div/a")]
+        public IWebElement btnAnotherTransfer { get; set; }
+        
+
         public void CheckingOption()
         {            
-            SeleniumSetMethods.SelectDropDown(ddmAccount, "3");
+            SeleniumSetMethods.SelectDropDown(ddmAccount, "Savings");
         }
 
         public void FillTransferMoneyAndMakePayment(string FromAcc, string ToAcc, string Amount, string Description)

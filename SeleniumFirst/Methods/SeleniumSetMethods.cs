@@ -32,12 +32,12 @@ namespace SeleniumFirst
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
+
         public static void SelectDropDown(this IWebElement element, string value)
         {
             new SelectElement(element).SelectByText(value);
             //new SelectElement(element).SelectByValue(value);
         }
-
         public static void ClickSubmit(this IWebElement element)
         {
             element.Submit();
