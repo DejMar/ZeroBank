@@ -24,10 +24,18 @@ namespace SeleniumFirst.Tests
             pageLogin.Login("username", "password");
             AccountSummaryPage page = new AccountSummaryPage();
             page.btnSavings.Click();
-            page.CheckingOption();
+            page.CheckingOption();            
+        }      
 
-            Thread.Sleep(7000);
+        [Test]
+        public void TransferFunds()
+        {
+            LoginPageObject pageLogin = new LoginPageObject();
+            pageLogin.Login("username", "password");
+            AccountSummaryPage page = new AccountSummaryPage();
+            page.btnTransferFunds.Click();
         }
+
         [TearDown]
         public void CleanUp()
         {

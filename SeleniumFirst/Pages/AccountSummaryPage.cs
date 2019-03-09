@@ -30,6 +30,9 @@ namespace SeleniumFirst.Pages
         [FindsBy(How = How.Id, Using = "user_remember_me")]
         public IWebElement checkRememberMe { get; set; }
 
+        [FindsBy(How = How.Id, Using = "transfer_funds_tab")]
+        public IWebElement btnTransferFunds { get; set; }
+
         public void CheckingOption()
         {            
             SeleniumSetMethods.SelectDropDown(ddmAccount, "Checking");
