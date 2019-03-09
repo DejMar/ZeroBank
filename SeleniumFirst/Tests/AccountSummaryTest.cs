@@ -32,13 +32,15 @@ namespace SeleniumFirst.Tests
         {
             LoginPageObject pageLogin = new LoginPageObject();
             pageLogin.Login("username", "password");
+
             AccountSummaryPage page = new AccountSummaryPage();
             page.btnTransferFunds.Click();            
             page.FillTransferMoneyAndMakePayment("Savings(Avail. balance = $ 1000)", "Checking(Avail. balance = $ -500.2)", "500.00", "Need money for Udemy Course");            
             page.btnContinue.Click();
             page.btnContinue.Click();
 
-            //Assert.AreEqual("Transfer Money & Make Payments - Confirm", page.msgExpected);
+            Assert.IsTrue(page.msgExpected.Displayed);
+            Assert.AreEqual(page.msgExpected.Text, "Transfer Money & Make Payments - Confirm");
 
             page.btnAnotherTransfer.Click();
             page.FillTransferMoneyAndMakePayment("Brokerage(Avail. balance = $ 197)", "Credit Card(Avail. balance = $ -265)", "350.00", "New description text");
