@@ -33,9 +33,35 @@ namespace SeleniumFirst.Pages
         [FindsBy(How = How.Id, Using = "transfer_funds_tab")]
         public IWebElement btnTransferFunds { get; set; }
 
+        [FindsBy(How = How.Id, Using = "tf_fromAccountId")]
+        public IWebElement optFromAccount { get; set; }
+
+        [FindsBy(How = How.Id, Using = "tf_toAccountId")]
+        public IWebElement optToAccount { get; set; }
+
+        [FindsBy(How = How.Id, Using = "tf_amount")]
+        public IWebElement txtAmount { get; set; }
+
+        [FindsBy(How = How.Id, Using = "tf_description")]
+        public IWebElement txtDescription { get; set; }
+
+        [FindsBy(How = How.Id, Using = "btn_submit")]
+        public IWebElement btnContinue { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = "board-header")]
+        public IWebElement msgExpected { get; set; }
+
         public void CheckingOption()
         {            
-            SeleniumSetMethods.SelectDropDown(ddmAccount, "Checking");
+            SeleniumSetMethods.SelectDropDown(ddmAccount, "3");
+        }
+
+        public void FillTransferMoneyAndMakePayment(string FromAcc, string ToAcc, string Amount, string Description)
+        {
+            SeleniumSetMethods.SelectDropDown(optFromAccount, FromAcc);
+            SeleniumSetMethods.SelectDropDown(optToAccount, ToAcc);
+            SeleniumSetMethods.EnterText(txtAmount, Amount);
+            SeleniumSetMethods.EnterText(txtDescription, Description);
         }
     }
 }

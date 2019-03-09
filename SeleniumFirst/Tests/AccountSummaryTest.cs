@@ -33,7 +33,13 @@ namespace SeleniumFirst.Tests
             LoginPageObject pageLogin = new LoginPageObject();
             pageLogin.Login("username", "password");
             AccountSummaryPage page = new AccountSummaryPage();
-            page.btnTransferFunds.Click();
+            page.btnTransferFunds.Click();            
+            page.FillTransferMoneyAndMakePayment("Savings(Avail. balance = $ 1000)", "Checking(Avail. balance = $ -500.2)", "500.00", "Need money for Udemy Course");            
+            page.btnContinue.Click();
+            page.btnContinue.Click();
+                       
+            //Assert.AreEqual("Transfer Money & Make Payments - Confirm", page.msgExpected);
+            
         }
 
         [TearDown]
