@@ -80,6 +80,36 @@ namespace SeleniumFirst.Pages
         [FindsBy(How =How.XPath, Using = "//*[@id='alert_content']/span")]
         public IWebElement msgPayment { get; set; }
 
+        //Pay Bill - Add New Payee 
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='tabs']/ul/li[2]/a")]
+        public IWebElement btnAddNewPayee { get; set; }
+
+        [FindsBy(How = How.Id, Using = "np_new_payee_name")]
+        public IWebElement txtPayeeName { get; set; }
+
+        [FindsBy(How = How.Id, Using = "np_new_payee_address")]
+        public IWebElement txtPayeeAddress { get; set; }
+
+        [FindsBy(How = How.Id, Using = "np_new_payee_account")]
+        public IWebElement txtPayeeAccount { get; set; }
+
+        [FindsBy(How = How.Id, Using = "np_new_payee_details")]
+        public IWebElement txtPayeeDetails { get; set; }
+
+        [FindsBy(How = How.Id, Using = "add_new_payee")]
+        public IWebElement btnAddPayee { get; set; }
+
+        [FindsBy(How = How.Id, Using = "alert_content")]
+        public IWebElement msgAddNewPayee { get; set; }
+
+
+        //Pay Bill - Purchase Foreign Currency
+
+
+
+
+
         public void CheckingOption()
         {            
             SeleniumSetMethods.SelectDropDown(ddmAccount, "Savings");
@@ -101,8 +131,16 @@ namespace SeleniumFirst.Pages
             SeleniumSetMethods.EnterText(txtSpDate, Date);
             AccountSummaryPage page = new AccountSummaryPage();
             page.txtSpAmount.Click();
-            SeleniumSetMethods.EnterText(txtSpDescription, Description);
-            
+            SeleniumSetMethods.EnterText(txtSpDescription, Description);            
         }
+
+        public void PopulateAddNewPayeeForm(string PayeeName, string PayeeAddress, string PayeeAccount, string PayeeDetails)
+        {
+            SeleniumSetMethods.EnterText(txtPayeeName, PayeeName);
+            SeleniumSetMethods.EnterText(txtPayeeAddress, PayeeAddress);
+            SeleniumSetMethods.EnterText(txtPayeeAccount, PayeeAccount);
+            SeleniumSetMethods.EnterText(txtPayeeDetails, PayeeDetails);
+        }
+            
     }
 }

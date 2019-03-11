@@ -66,7 +66,24 @@ namespace SeleniumFirst.Tests
             
             Assert.IsTrue(page.msgPayment.Displayed);
             Assert.AreEqual(page.msgPayment.Text, "The payment was successfully submitted.");
+        }
 
+        [Test]
+        public void AddNewPayee()
+        {
+            LoginPageObject pageLogin = new LoginPageObject();
+            pageLogin.Login("username", "password");
+
+            AccountSummaryPage page = new AccountSummaryPage();
+            page.btnBillPay.Click();
+            page.btnAddNewPayee.Click();
+            Thread.Sleep(1000);
+            page.PopulateAddNewPayeeForm("Dejan Marjanovic", "Gabelina 25", "Savings", "Stalna musterija");
+
+            page.btnAddPayee.Click();
+
+            Assert.IsTrue(page.msgAddNewPayee.Displayed);
+            Assert.AreEqual(page.msgAddNewPayee.Text, "The new payee Dejan Marjanovic was successfully created.");
         }
 
         [TearDown]
