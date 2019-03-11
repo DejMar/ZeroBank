@@ -17,6 +17,7 @@ namespace SeleniumFirst.Tests
             PropertiesCollection.driver = new ChromeDriver();
 
             PropertiesCollection.driver.Navigate().GoToUrl("http://zero.webappsecurity.com/index.html");
+            PropertiesCollection.driver.Manage().Window.Maximize();
             Console.WriteLine("Opened URL");
         }
         [Test]

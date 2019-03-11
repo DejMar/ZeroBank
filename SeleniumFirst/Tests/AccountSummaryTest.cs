@@ -15,6 +15,7 @@ namespace SeleniumFirst.Tests
             PropertiesCollection.driver = new ChromeDriver();
 
             PropertiesCollection.driver.Navigate().GoToUrl("http://zero.webappsecurity.com/index.html");
+            PropertiesCollection.driver.Manage().Window.Maximize();
             Console.WriteLine("Opened URL");
         }
         [Test]
@@ -25,7 +26,21 @@ namespace SeleniumFirst.Tests
             AccountSummaryPage page = new AccountSummaryPage();
             page.btnSavings.Click();
             page.CheckingOption();            
-        }      
+        }
+
+        [Test]
+        public void FindTransaction()
+        {
+            LoginPageObject pageLogin = new LoginPageObject();
+            pageLogin.Login("username", "password");
+            AccountSummaryPage page = new AccountSummaryPage();
+            page.btnAccountActivity.Click();                      
+            page.btnFindTransactions.Click();
+            Thread.Sleep(1000);
+            page.PopulateFindTransactionsForm("Description", "2019-03-13", "2019-08-23", "500.00", "750.00", "Deposit");            
+            page.btnFind.Click();
+            Thread.Sleep(5000);
+        }
 
         [Test]
         public void TransferFunds()
@@ -77,6 +92,9 @@ namespace SeleniumFirst.Tests
             AccountSummaryPage page = new AccountSummaryPage();
             page.btnBillPay.Click();
             page.btnAddNewPayee.Click();
+            
+            //Assert.AreEqual(page.lblHeaderAddNewPayee.Text, "Who are you paying?");
+
             Thread.Sleep(1000);
             page.PopulateAddNewPayeeForm("Dejan Marjanovic", "Gabelina 25", "Savings", "Stalna musterija");
 
@@ -84,6 +102,33 @@ namespace SeleniumFirst.Tests
 
             Assert.IsTrue(page.msgAddNewPayee.Displayed);
             Assert.AreEqual(page.msgAddNewPayee.Text, "The new payee Dejan Marjanovic was successfully created.");
+        }
+
+        [Test]
+        public void PurchaseForeignCurrency()
+        {
+            LoginPageObject pageLogin = new LoginPageObject();
+            pageLogin.Login("username", "password");
+
+            AccountSummaryPage page = new AccountSummaryPage();
+        }
+
+        [Test]
+        public void OnlineStatement()
+        {
+            LoginPageObject pageLogin = new LoginPageObject();
+            pageLogin.Login("username", "password");
+
+            AccountSummaryPage page = new AccountSummaryPage();
+        }
+
+        [Test]
+        public void SearchBar()
+        {
+            LoginPageObject pageLogin = new LoginPageObject();
+            pageLogin.Login("username", "password");
+
+            AccountSummaryPage page = new AccountSummaryPage();
         }
 
         [TearDown]

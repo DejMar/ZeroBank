@@ -33,6 +33,9 @@ namespace SeleniumFirst.Pages
         [FindsBy(How = How.Id, Using = "transfer_funds_tab")]
         public IWebElement btnTransferFunds { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='account_activity_tab']/a")] 
+        public IWebElement btnAccountActivity { get; set; }
+
         [FindsBy(How = How.Id, Using = "tf_fromAccountId")]
         public IWebElement optFromAccount { get; set; }
 
@@ -103,11 +106,41 @@ namespace SeleniumFirst.Pages
         [FindsBy(How = How.Id, Using = "alert_content")]
         public IWebElement msgAddNewPayee { get; set; }
 
+        [FindsBy(How = How.ClassName, Using = "board-header")]//*[@id='ui - tabs - 2']/h2
+        public IWebElement lblHeaderAddNewPayee { get; set; }
 
         //Pay Bill - Purchase Foreign Currency
 
+        
 
 
+
+
+        //Find Transactions
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='tabs']/ul/li[2]/a")]
+        public IWebElement btnFindTransactions { get; set; } 
+
+        [FindsBy(How = How.Id, Using = "aa_description")]
+        public IWebElement txtAaDescription { get; set; }
+
+        [FindsBy(How = How.Id, Using = "aa_fromDate")]
+        public IWebElement txtAaFromDate { get; set; }
+
+        [FindsBy(How = How.Id, Using = "aa_toDate")]
+        public IWebElement txtAaToDate { get; set; }
+
+        [FindsBy(How = How.Id, Using = "aa_fromAmount")]
+        public IWebElement txtAaFromAmount { get; set; }
+
+        [FindsBy(How = How.Id, Using = "aa_toAmount")]
+        public IWebElement txtAaToAmount { get; set; }
+
+        [FindsBy(How = How.Id, Using = "aa_type")]
+        public IWebElement ddmAaType { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='find_transactions_form']/div[2]/button")]
+        public IWebElement btnFind { get; set; }
 
 
         public void CheckingOption()
@@ -141,6 +174,16 @@ namespace SeleniumFirst.Pages
             SeleniumSetMethods.EnterText(txtPayeeAccount, PayeeAccount);
             SeleniumSetMethods.EnterText(txtPayeeDetails, PayeeDetails);
         }
-            
+
+        public void PopulateFindTransactionsForm(string Description, string FromDates, string ToDates, string FromAmount, string ToAmount, string Type)
+        {
+            SeleniumSetMethods.EnterText(txtAaDescription, Description);
+            SeleniumSetMethods.EnterText(txtAaFromDate, FromDates);
+            SeleniumSetMethods.EnterText(txtAaToDate, ToDates);
+            SeleniumSetMethods.EnterText(txtAaFromAmount, FromAmount);
+            SeleniumSetMethods.EnterText(txtAaToAmount, ToAmount);
+            SeleniumSetMethods.SelectDropDown(ddmAaType, Type);
+        }
+
     }
 }
