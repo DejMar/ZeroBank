@@ -53,7 +53,32 @@ namespace SeleniumFirst.Pages
 
         [FindsBy(How = How.XPath, Using = "//*[@id='transfer_funds_content']/div/a")]
         public IWebElement btnAnotherTransfer { get; set; }
+
+        //Pay Bill - Pay Saved Payee
+
+        [FindsBy(How = How.Id, Using = "pay_bills_tab")]
+        public IWebElement btnBillPay { get; set; }
+
+        [FindsBy(How = How.Id, Using = "sp_payee")]
+        public IWebElement ddmPayee { get; set; }
+
+        [FindsBy(How = How.Id, Using = "sp_account")]
+        public IWebElement ddmSpAccount { get; set; }
+
+        [FindsBy(How = How.Id, Using = "sp_amount")]
+        public IWebElement txtSpAmount { get; set; }
+
+        [FindsBy(How = How.Id, Using = "sp_date")]
+        public IWebElement txtSpDate { get; set; }
+
+        [FindsBy(How = How.Id, Using = "sp_description")]
+        public IWebElement txtSpDescription { get; set; }
         
+        [FindsBy(How = How.Id, Using = "pay_saved_payees")]
+        public IWebElement btnPay { get; set; }
+
+        [FindsBy(How =How.XPath, Using = "//*[@id='alert_content']/span")]
+        public IWebElement msgPayment { get; set; }
 
         public void CheckingOption()
         {            
@@ -66,6 +91,18 @@ namespace SeleniumFirst.Pages
             SeleniumSetMethods.SelectDropDown(optToAccount, ToAcc);
             SeleniumSetMethods.EnterText(txtAmount, Amount);
             SeleniumSetMethods.EnterText(txtDescription, Description);
+        }
+
+        public void PopulatePaymentToSavedPayees(string Payee, string Account, string Amount, string Date, string Description)
+        {
+            SeleniumSetMethods.SelectDropDown(ddmPayee, Payee);
+            SeleniumSetMethods.SelectDropDown(ddmSpAccount, Account);
+            SeleniumSetMethods.EnterText(txtSpAmount, Amount);
+            SeleniumSetMethods.EnterText(txtSpDate, Date);
+            AccountSummaryPage page = new AccountSummaryPage();
+            page.txtSpAmount.Click();
+            SeleniumSetMethods.EnterText(txtSpDescription, Description);
+            
         }
     }
 }
